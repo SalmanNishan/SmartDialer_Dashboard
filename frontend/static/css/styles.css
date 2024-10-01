@@ -1,0 +1,50 @@
+/* Body background color */
+body {
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+/* Container styling for each section */
+.container {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Add space after each block */
+    border: 1px solid #ccc; /* Add boundary line */
+}
+
+/* Padding for the audio blocks */
+.list-group-item {
+    padding: 15px;
+    background-color: #e6f7ff; /* Light blue background for audio */
+}
+
+/* Styling for Call Details */
+h1 {
+    margin-bottom: 30px; /* Add space after title */
+}
+
+/* Audio file section styling */
+audio {
+    width: 100%; /* Make the audio controls full width for better visualization */
+}
+
+/* Dialogue styling */
+.dialogue.agent {
+    background-color: #e6f7ff; /* Light blue for agent */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.dialogue.client {
+    background-color: #fff3e6; /* Light orange for client */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Margins for sections */
+h3 {
+    margin-top: 40px; /* Add space before each section title */
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Call Details</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Date:</strong> {{ record['Date'] }}</li>
+            <li class="list-group-item"><strong>Call Name:</strong> {{ record['Filename'] }}</li>
+            <li class="list-group-item"><strong>Call Type:</strong> {{ record['call_type'] }}</li>
+            <li class="list-group-item"><strong>Call Duration:</strong> {{ record['Processed_Audio_Duration'] }}</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>Audio Files</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>Audio:</strong>
+                <audio controls>
+                    <source src="{{ url_for('static', filename='processed_calls/' + record['Date'] + '/' + record['Filename']) }}" type="audio/wav">
+                    Your browser does not support the audio tag.
+                </audio>
+            </li>
+            <li class="list-group-item">
+                <strong>Agent Audio:</strong>
+                <audio controls>
+                    <source src="{{ url_for('static', filename='processed_calls/' + record['Date'] + '/agent_' + record['Filename']) }}" type="audio/wav">
+                    Your browser does not support the audio tag.
+                </audio>
+            </li>
+            <li class="list-group-item">
+                <strong>Client Audio:</strong>
+                <audio controls>
+                    <source src="{{ url_for('static', filename='processed_calls/' + record['Date'] + '/client_' + record['Filename']) }}" type="audio/wav">
+                    Your browser does not support the audio tag.
+                </audio>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>Transcription</h1>
+        <div class="transcription">
+            {% for line in record['Transcription'].split('\n') %}
+                {% if record['agent_name'] in line %}
+                    <div class="dialogue agent"><strong>{{ record['agent_name'] }}:</strong> {{ line.split(':', 1)[1] }}</div>
+                {% elif record['client_name'] in line %}
+                    <div class="dialogue client"><strong>{{ record['client_name'] }}:</strong> {{ line.split(':', 1)[1] }}</div>
+                {% else %}
+                    <div class="dialogue"><strong></strong> {{ line }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

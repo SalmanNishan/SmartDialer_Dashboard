@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Date or Agent</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Select Date or Agent</h1>
+        <form action="{{ url_for('data') }}" method="POST">
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <select class="form-control" name="date" id="date">
+                    <option value="">--Select Date--</option>
+                    {% for date in dates %}
+                    <option value="{{ date }}">{{ date }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="agent_name">Select Agent Name:</label>
+                <select class="form-control" name="agent_name" id="agent_name">
+                    <option value="">--Select Agent--</option>
+                    {% for agent in agent_names %}
+                    <option value="{{ agent }}">{{ agent }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
